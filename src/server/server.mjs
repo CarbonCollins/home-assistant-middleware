@@ -11,7 +11,6 @@ dotenv.config({ path: path.join(process.cwd(), '.env') });
 const app = express();
 
 app.post('/webhook/plex', upload.single('thumb'), (req, res) => {
-  console.log(req);
   if (req && req.query && req.query.key && req.query.key === process.env.WEBHOOK_KEY) {
     if (req.body && req.body.payload && (typeof req.body.payload === 'string')) {
       try {
@@ -41,7 +40,6 @@ app.post('/webhook/plex', upload.single('thumb'), (req, res) => {
 
             request(options);
           }
-          console.log(payload);
         }
         res.status(200).send();
       } catch (err) {
